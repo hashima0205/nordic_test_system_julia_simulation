@@ -43,7 +43,7 @@ This directory contains the standalone Julia implementation of the IEEE PES-TR19
 
 The tables below show side-by-side comparisons between the official IEEE PES-TR19 benchmark curves (left) and our standalone Julia simulation results (right) for Scenario 1.
 
-### 1. Benchmark Comparisons (Fig 3.1 - Fig 3.6)
+### Benchmark Comparisons (Fig 3.1 - Fig 3.6)
 
 | IEEE PES-TR19 Benchmark | Standalone Julia Simulation |
 |:---:|:---:|
@@ -59,10 +59,3 @@ The tables below show side-by-side comparisons between the official IEEE PES-TR1
 | ![PESTR19 Fig 3.5](./graph/PESTR19_fig3_5.png) | ![Julia Fig 3.5](./graph/nordic_fig3_5.png) |
 | **Figure 3.6: Load Power and Voltage Restoration** | |
 | ![PESTR19 Fig 3.6](./graph/PESTR19_fig3_6.png) | ![Julia Fig 3.6](./graph/nordic_fig3_6.png) |
-
----
-
-### 2. Long-Term Voltage Collapse Trajectory
-The overall transmission voltage collapse trajectory simulated up to 200 seconds is shown below:
-
-![Scenario 1 Plot](./graph/nordic_dynamic_scenario1.png)
