@@ -15,7 +15,7 @@ This directory contains the standalone Julia implementation of the IEEE PES-TR19
 - **Generators**: 
   - Salient-pole hydro generators modeled using `PSSE_GENSAL` (North and Equivalent areas).
   - Round-rotor thermal generators modeled using `PSSE_GENROU` (Central and South areas).
-- **Excitation Controllers**: Automatic Voltage Regulators (AVR) integrated with Overexcitation Limiters (OEL) using a dynamic integrator takeover takeover gate.
+- **Excitation Controllers**: Automatic Voltage Regulators (AVR) integrated with Overexcitation Limiters (OEL) using a dynamic integrator takeover gate.
 - **Load Tap Changers (LTC)**: Continuous state-space approximations regulating load-side distribution voltages within a deadband `[0.99, 1.01]` p.u. by modifying transformer tap ratio `m` (with a delay of 30 seconds).
 - **Speed Governors & Turbines**: Modeled on hydro generators to regulate frequency (50 Hz).
 
@@ -39,21 +39,30 @@ This directory contains the standalone Julia implementation of the IEEE PES-TR19
 
 ---
 
-## Simulation Results
+## Simulation Results and Benchmarks
 
-### 1. Scenario 1 - Long-Term Voltage Collapse
-The plot below illustrates the long-term voltage collapse under Scenario 1. Following the fault and line trip at $t = 2.0\text{s}$, the system voltage recovers initially but collapses around $t = 180.4\text{s}$ due to the continuous tap-changing actions of LTC transformers trying to restore load consumption, which overrides the generator reactive capability and triggers OEL limits.
+The tables below show side-by-side comparisons between the official IEEE PES-TR19 benchmark curves (left) and our standalone Julia simulation results (right) for Scenario 1.
+
+### 1. Benchmark Comparisons (Fig 3.1 - Fig 3.6)
+
+| IEEE PES-TR19 Benchmark | Standalone Julia Simulation |
+|:---:|:---:|
+| **Figure 3.1: Transmission Bus Voltages** | |
+| ![PESTR19 Fig 3.1](./graph/PESTR19_fig3_1.png) | ![Julia Fig 3.1](./graph/nordic_fig3_1.png) |
+| **Figure 3.2: Field Currents of Limited Generators** | |
+| ![PESTR19 Fig 3.2](./graph/PESTR19_fig3_2.png) | ![Julia Fig 3.2](./graph/nordic_fig3_2.png) |
+| **Figure 3.3: Field Currents of Non-limited Generators** | |
+| ![PESTR19 Fig 3.3](./graph/PESTR19_fig3_3.png) | ![Julia Fig 3.3](./graph/nordic_fig3_3.png) |
+| **Figure 3.4: Terminal Voltages of Limited Generators** | |
+| ![PESTR19 Fig 3.4](./graph/PESTR19_fig3_4.png) | ![Julia Fig 3.4](./graph/nordic_fig3_4.png) |
+| **Figure 3.5: LTC Transformer Tap Ratios** | |
+| ![PESTR19 Fig 3.5](./graph/PESTR19_fig3_5.png) | ![Julia Fig 3.5](./graph/nordic_fig3_5.png) |
+| **Figure 3.6: Load Power and Voltage Restoration** | |
+| ![PESTR19 Fig 3.6](./graph/PESTR19_fig3_6.png) | ![Julia Fig 3.6](./graph/nordic_fig3_6.png) |
+
+---
+
+### 2. Long-Term Voltage Collapse Trajectory
+The overall transmission voltage collapse trajectory simulated up to 200 seconds is shown below:
 
 ![Scenario 1 Plot](./graph/nordic_dynamic_scenario1.png)
-
-### 2. LTC Tap and Load Bus Voltages
-The following plot shows the LTC tap ratios `m` adapting to regulate the low-voltage distribution buses.
-
-![LTC Scenario Plot](./graph/nordic_ltc_scenario1.png)
-
-### 3. Verification Curves (Dynamic Trajectories)
-Below are representative curves comparing the variables (Voltage, Field Currents, etc.) to the reference paper benchmarks:
-
-| Transmission Voltages (Fig 3.1) | Generator Field Currents (Fig 3.2) |
-|:---:|:---:|
-| ![Voltages](./graph/nordic_fig3_1.png) | ![Field Currents](./graph/nordic_fig3_2.png) |
