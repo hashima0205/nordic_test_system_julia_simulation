@@ -11,6 +11,8 @@ This directory contains the standalone Julia implementation of the IEEE PES-TR19
   - 22 Distribution/Load buses (20 kV)
   - 20 Generator buses (15 kV)
 
+![Nordic Test System Grid Structure](./graph/nordic_network_structure.png)
+
 ### 2. Dynamic Components
 - **Generators**: 
   - Salient-pole hydro generators modeled using `PSSE_GENSAL` (North and Equivalent areas).
